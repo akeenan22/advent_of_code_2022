@@ -19,7 +19,7 @@ pub fn vec_2d(text: &str) -> Vec<Vec<u8>> {
 /// [Source](https://stackoverflow.com/questions/64498617/how-to-transpose-a-vector-of-vectors-in-rust)
 /// ```
 /// # use advent_of_code_2022::day8::transpose;
-/// assert_eq!(transpose(vec![vec![1, 2], vec![3, 4]]), vec![vec![1, 3], vec![2, 4]]);
+/// assert_eq!(transpose(&[vec![1, 2], vec![3, 4]]), vec![vec![1, 3], vec![2, 4]]);
 pub fn transpose<T: Clone>(rect: &[Vec<T>]) -> Vec<Vec<T>> {
     (0..rect[0].len())
         .map(|i| rect.iter().map(|inner| inner[i].clone()).collect())
