@@ -92,7 +92,8 @@ pub fn reverse<T: Clone>(v: &[T]) -> Vec<T> {
 pub fn puzzle1(path: &str) -> Result<usize, Box<dyn Error>> {
     let text = fs::read_to_string(path)?;
     let vec_2d = vec_2d(&text);
-    let transposed_hidden = transpose(&transpose(&vec_2d).iter().map(hidden).collect::<Vec<_>>());
+    let transposed_hidden =
+        transpose(&transpose(&vec_2d).iter().map(hidden).collect::<Vec<_>>());
     Ok(vec_2d
         .iter()
         .map(hidden)
@@ -110,7 +111,8 @@ pub fn puzzle1(path: &str) -> Result<usize, Box<dyn Error>> {
 pub fn puzzle2(path: &str) -> Result<i32, Box<dyn Error>> {
     let text = fs::read_to_string(path)?;
     let vec_2d = vec_2d(&text);
-    let transposed_views = transpose(&transpose(&vec_2d).iter().map(view).collect::<Vec<_>>());
+    let transposed_views =
+        transpose(&transpose(&vec_2d).iter().map(view).collect::<Vec<_>>());
     Ok(vec_2d
         .iter()
         .map(view)

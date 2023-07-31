@@ -31,7 +31,9 @@ pub fn parse_cargo(cargo: &str) -> Vec<Vec<char>> {
 /// # use advent_of_code_2022::day5::parse_instruction;
 /// assert_eq!(parse_instruction("move 1 from 6 to 2").unwrap(), (1, 6, 2));
 /// ```
-pub fn parse_instruction(instruction: &str) -> Result<(i32, usize, usize), Box<dyn Error>> {
+pub fn parse_instruction(
+    instruction: &str,
+) -> Result<(i32, usize, usize), Box<dyn Error>> {
     let mut iter = instruction
         .split_whitespace()
         .filter(|&s| s.chars().next().unwrap_or(' ').is_ascii_digit());

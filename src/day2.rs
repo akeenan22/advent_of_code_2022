@@ -118,7 +118,10 @@ pub mod tests {
 
     #[test]
     fn can_parse_line() {
-        assert_eq!((RPS::Rock, RPS::Scissors), day2::parse_line("A Z").unwrap());
+        assert_eq!(
+            (RPS::Rock, RPS::Scissors),
+            day2::parse_line("A Z").unwrap()
+        );
     }
 
     #[test]

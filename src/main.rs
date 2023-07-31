@@ -19,4 +19,6 @@ fn main() {
     println!("Day 8 Puzzle 2 {:?}", day8::puzzle2("day8.txt"));
     println!("Day 9 Puzzle 1 {:?}", day9::puzzle1("day9.txt"));
     println!("Day 9 Puzzle 2 {:?}", day9::puzzle2("day9.txt"));
+    println!("Day 10 Puzzle 1 {:?}", day10::puzzle1("day10.txt"));
+    println!("Day 10 Puzzle 2 {:?}", day10::puzzle2("day10.txt"));
 }
