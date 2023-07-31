@@ -20,18 +20,20 @@ impl Range {
     pub fn overlap(&self, other: &Range) -> Option<Range> {
         match (self.start.cmp(&other.end), self.end.cmp(&other.start)) {
             (Less, _) | (_, Greater) => None,
-            (_, _) => match (self.start.cmp(&other.start), self.end.cmp(&other.end)) {
-                (Greater | Equal, Less | Equal) => Some(*self),
-                (Less | Equal, Greater | Equal) => Some(*other),
-                (Greater, Greater) => Some(Range {
-                    start: self.start,
-                    end: other.end,
-                }),
-                (Less, Less) => Some(Range {
-                    start: other.start,
-                    end: self.end,
-                }),
-            },
+            (_, _) => {
+                match (self.start.cmp(&other.start), self.end.cmp(&other.end)) {
+                    (Greater | Equal, Less | Equal) => Some(*self),
+                    (Less | Equal, Greater | Equal) => Some(*other),
+                    (Greater, Greater) => Some(Range {
+                        start: self.start,
+                        end: other.end,
+                    }),
+                    (Less, Less) => Some(Range {
+                        start: other.start,
+                        end: self.end,
+                    }),
+                }
+            }
         }
     }
 
@@ -50,9 +52,13 @@ pub fn mutual_contains(x: &Range, y: &Range) -> bool {
 
 pub fn parse_line(line: &str) -> Option<(Range, Range)> {
     let mut halves = line.split(',');
-    let (mut left, mut right) = (halves.next()?.split('-'), halves.next()?.split('-'));
+    let (mut left, mut right) =
+        (halves.next()?.split('-'), halves.next()?.split('-'));
     Some((
-        Range::from(left.next()?.parse().unwrap(), left.next()?.parse().unwrap())?,
+        Range::from(
+            left.next()?.parse().unwrap(),
+            left.next()?.parse().unwrap(),
+        )?,
         Range::from(
             right.next()?.parse().unwrap(),
             right.next()?.parse().unwrap(),

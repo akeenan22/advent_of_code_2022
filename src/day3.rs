@@ -4,7 +4,10 @@ use std::fs;
 
 pub fn priority(letter: char) -> Option<i32> {
     if letter.is_ascii_alphabetic() {
-        Some(letter.to_digit(36)? as i32 - 9 + if letter.is_uppercase() { 26 } else { 0 })
+        Some(
+            letter.to_digit(36)? as i32 - 9
+                + if letter.is_uppercase() { 26 } else { 0 },
+        )
     } else {
         None
     }
@@ -53,7 +56,9 @@ pub fn puzzle2(path: &str) -> Result<i32, Box<dyn Error>> {
         let mut acc = 0;
         let text = fs::read_to_string(path)?;
         let mut lines = text.lines();
-        while let (Some(x), Some(y), Some(z)) = (lines.next(), lines.next(), lines.next()) {
+        while let (Some(x), Some(y), Some(z)) =
+            (lines.next(), lines.next(), lines.next())
+        {
             acc += match find_shared(x, y, z).map(priority) {
                 Some(Some(x)) => Ok(x),
                 Some(None) => Err(format!("{x}, {y}, {z}: Not a letter!")),

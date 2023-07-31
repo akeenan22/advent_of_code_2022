@@ -20,7 +20,9 @@ impl File {
     fn size(&self, finder: &Finder) -> usize {
         match &self.soc {
             SOC::Size(x) => *x,
-            SOC::Children(x) => x.iter().map(|x| finder.get(*x).unwrap().size(finder)).sum(),
+            SOC::Children(x) => {
+                x.iter().map(|x| finder.get(*x).unwrap().size(finder)).sum()
+            }
         }
     }
 }
